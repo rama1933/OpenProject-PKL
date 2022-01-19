@@ -148,7 +148,7 @@
             </div>
             @endif
             <div class="form-group">
-                <input type="text" class="form-control item" name="username" id="username" placeholder="Username">
+                <input type="text" class="form-control item" name="username" id="username" placeholder="Username / NIK">
             </div>
             <div class="form-group">
                 <input type="password" class="form-control item" id="password" name="password" placeholder="Password">

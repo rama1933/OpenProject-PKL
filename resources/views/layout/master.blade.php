@@ -95,6 +95,17 @@
                             </a>
                         </li>
 
+                        <li class="nav-header"> MASTER</li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('jenis') }}" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Master Jenis
+                                </p>
+                            </a>
+                        </li>
+
 
 
                         {{-- <li class="nav-header"> PENGATURAN</li>

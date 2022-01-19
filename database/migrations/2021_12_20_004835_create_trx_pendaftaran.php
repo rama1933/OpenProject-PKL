@@ -14,6 +14,7 @@ class CreateTrxPendaftaran extends Migration
     public function up()
     {
         Schema::create('trx_pendaftaran', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('pendaftaran_id');
             $table->string('nopol');
             $table->date('tgl_stnk');

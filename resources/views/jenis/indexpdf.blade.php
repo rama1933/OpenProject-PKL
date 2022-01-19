@@ -53,42 +53,19 @@
     <footer>
         <hr>
     </footer>
-    <h3 style="text-align: center;">DATA PENDAFTARAN</h3>
+    <h3 style="text-align: center;">DATA MASTER JENIS</h3>
     <table id="table" style="width: 100%">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nik</th>
-                <th>Nama</th>
-                <th>No Hp</th>
-                <th>Alamat</th>
-                <th>Merk</th>
-                <th>Type</th>
                 <th>Jenis</th>
-                <th>Warna</th>
-                <th>Tahun Pembuatan</th>
-                <th>Tanggal Daftar</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($pendaftaran as $pendaftaran)
+            @foreach ($jenis as $jenis)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{ $pendaftaran->nik }}</td>
-                <td>{{ $pendaftaran->nama }}</td>
-                <td>{{ $pendaftaran->no_hp }}</td>
-                <td>{{ $pendaftaran->alamat }}</td>
-                <td>{{ $pendaftaran->merk }}</td>
-                <td>{{ $pendaftaran->type }}</td>
-                <td>
-                    @foreach ($pendaftaran->jenis as $a)
-                    {{ $a->jenis }}
-                    @endforeach
-                </td>
-                <td>{{ $pendaftaran->warna }}</td>
-                <td>{{ $pendaftaran->tahun }}</td>
-
-                <td>{{ date('d-m-Y',strtotime($pendaftaran->tanggal)) }}</td>
+                <td>{{ $jenis->jenis }}</td>
             </tr>
             @endforeach
         </tbody>

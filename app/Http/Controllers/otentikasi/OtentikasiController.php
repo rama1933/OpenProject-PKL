@@ -69,7 +69,7 @@ class OtentikasiController extends Controller
         // }
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             if (auth()->user()->role == 'admin') {
-            return redirect()->route('admin.index');
+            return redirect()->route('pendaftaran_admin');
         }else{
             return redirect('/pendaftaran');
         }

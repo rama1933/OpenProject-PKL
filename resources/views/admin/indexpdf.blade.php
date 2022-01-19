@@ -68,6 +68,9 @@
                 <th>Warna</th>
                 <th>Tahun Pembuatan</th>
                 <th>Tanggal Daftar</th>
+                <th>Nopol</th>
+                <th>Tgl STNK</th>
+                <th>Tgl Pajak</th>
             </tr>
         </thead>
         <tbody>
@@ -89,6 +92,16 @@
                 <td>{{ $pendaftaran->tahun }}</td>
 
                 <td>{{ date('d-m-Y',strtotime($pendaftaran->tanggal)) }}</td>
+                @forelse ($pendaftaran->pendaftarans as $a)
+
+                <td>{{ $a->nopol }}</td>
+                <td>{{ date('d-m-Y',strtotime($a->tgl_stnk)) }}</td>
+                <td>{{ date('d-m-Y',strtotime($a->tgl_pajak)) }}</td>
+                @empty
+                <td></td>
+                <td></td>
+                <td></td>
+                @endforelse
             </tr>
             @endforeach
         </tbody>
