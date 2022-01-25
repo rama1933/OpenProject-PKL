@@ -45,43 +45,40 @@
                                             @csrf
                                             <div class="row">
                                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                                <input type="hidden" name="biodata_id"
+                                                    value="{{ auth()->user()->biodata_id }}">
+                                                <input type="hidden" name="tanggal" value="{{ date('Y-m-d') }}">
                                                 {{-- <div class="form-group">
                                                     <label for="nik" style="color: white">NIK</label>
                                                     <input type="text" name="nik" class="form-control" maxlength="16"
                                                         onkeypress="return hanyaAngka(event)" placeholder="NIK"
                                                         data-rule="minlen:4" required />
                                                 </div> --}}
-
-
-                                                <div class="form-group col-lg-6">
-                                                    <input type="text" value="{{ auth()->user()->username }}"
-                                                        class="form-control" name="nik" placeholder="Nik"
-                                                        data-rule="minlen:4" required />
+                                                <div class="form-group col-lg-12">
+                                                    <select name="merk_id" class="form-control" required>
+                                                        <option value="">merk</option>
+                                                        @foreach ($merk as $merk)
+                                                        <option value="{{ $merk->id }}">{{ $merk->merk }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
 
-                                                <div class="form-group col-lg-6">
-                                                    <input type="text" class="form-control" name="nama"
-                                                        placeholder="Nama Pemilik" data-rule="minlen:4" required />
+                                                <div class="form-group col-lg-12">
+                                                    <select name="type_id" class="form-control" required>
+                                                        <option value="">type</option>
+                                                        @foreach ($type as $type)
+                                                        <option value="{{ $type->id }}">{{ $type->type }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
 
-                                                <div class="form-group col-lg-6">
-                                                    <input type="text" class="form-control" name="no_hp"
-                                                        placeholder="No Hp" data-rule="minlen:4" required />
-                                                </div>
-
-                                                <div class="form-group col-lg-6">
-                                                    <input type="text" class="form-control" name="nopol"
-                                                        placeholder="Nopol " data-rule="minlen:4" required />
-                                                </div>
-
-                                                <div class="form-group col-lg-6">
-                                                    <input type="text" class="form-control" name="merk"
-                                                        placeholder="Merk " data-rule="minlen:4" required />
-                                                </div>
-
-                                                <div class="form-group col-lg-6">
-                                                    <input type="text" class="form-control" name="type"
-                                                        placeholder="Type" data-rule="minlen:4" required />
+                                                <div class="form-group col-lg-12">
+                                                    <select name="jenis_id" class="form-control" required>
+                                                        <option value="">Jenis</option>
+                                                        @foreach ($jenis as $jenis)
+                                                        <option value="{{ $jenis->id }}">{{ $jenis->jenis }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
 
                                                 <div class="form-group col-lg-6">
@@ -95,19 +92,6 @@
                                                         onkeypress="return hanyaAngka(event)" maxlength="4" required />
                                                 </div>
 
-                                                <div class="form-group col-lg-12">
-                                                    <select name="jenis_id" class="form-control" required>
-                                                        <option value="">Jenis</option>
-                                                        @foreach ($jenis as $jenis)
-                                                        <option value="{{ $jenis->id }}">{{ $jenis->jenis }}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group col-lg-12">
-                                                    <textarea class="form-control" name="alamat" rows="5"
-                                                        placeholder="Alamat" data-rule="required" required></textarea>
-                                                </div>
 
 
                                                 {{-- <div class="form-group col-lg-12">

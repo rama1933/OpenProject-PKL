@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Jenis;
+use App\Merk;
 use App\Pendaftaran;
+use App\Type;
 use PDF;
 use Illuminate\Http\Request;
 
@@ -18,6 +20,8 @@ class PendaftaranController extends Controller
     public function index_tambah()
     {
         $data['jenis'] = Jenis::all();
+        $data['type'] = Type::all();
+        $data['merk'] = Merk::all();
         return view('pendaftaran.index_tambah',$data);
     }
 
@@ -25,9 +29,17 @@ class PendaftaranController extends Controller
     {
         $data['pendaftaran'] = Pendaftaran::where('id', $id)->get();
         $jenis_id = Pendaftaran::where('id', $id)->pluck('jenis_id');
+        $merk_id = Pendaftaran::where('id', $id)->pluck('merk_id');
+        $type_id = Pendaftaran::where('id', $id)->pluck('type_id');
 
          $data['jenis'] = Jenis::where('id','!=', $jenis_id[0])->get();
          $data['jenis2'] = Jenis::where('id', $jenis_id[0])->get();
+
+         $data['merk'] = Merk::where('id','!=', $merk_id[0])->get();
+         $data['merk2'] = Merk::where('id', $merk_id[0])->get();
+
+          $data['type'] = Type::where('id','!=', $type_id[0])->get();
+         $data['type2'] = Type::where('id', $type_id[0])->get();
         return view('pendaftaran.index_edit', $data);
     }
 
@@ -85,7 +97,7 @@ class PendaftaranController extends Controller
         // $data['data'] = $query->get();
         $data['pendaftaran'] = Pendaftaran::where('user_id',auth()->user()->id)->get();
         $pdf = PDF::loadview('pendaftaran.indexpdf', $data)->setPaper('a4', 'landscape');
-        return $pdf->download('Pendaftaran.pdf');
+        return $pdf->stream('Pendaftaran.pdf');
     }
 
 
@@ -111,6 +123,6 @@ class PendaftaranController extends Controller
         // $data['data'] = $query->get();
         $data['pendaftaran'] = Pendaftaran::where('id',$id)->get();
         $pdf = PDF::loadview('pendaftaran.indexpdf_detail', $data)->setPaper('a4', 'landscape');
-        return $pdf->download('Pendaftaran.pdf');
+        return $pdf->stream('Pendaftaran.pdf');
     }
 }

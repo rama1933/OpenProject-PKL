@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\otentikasi;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Biodata;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class OtentikasiController extends Controller
 {
@@ -21,7 +23,7 @@ class OtentikasiController extends Controller
         return view('otentikasi.daftar');
     }
 
-      public function daftar_input( Request $request)     {
+      public function daftar_input( Request $request) {
         // return  User::create([
         //     // 'name' => $data['name'],
         //     'email' => $data['email'],
@@ -37,22 +39,52 @@ class OtentikasiController extends Controller
             return redirect('daftar_form')->with('message', 'Nik Sudah Terdaftar');
         }
 
-        // $pass = [
+       $trans = DB::transaction(function () use ($request) {
 
-        //     'password' => ['required', 'string', 'min:8'],
-        // ];
-        // $pass_val = validator()->make(request()->all(), $pass);
+           $cek = Biodata::where('nik',$request->input('nik'))->get();
 
-        // if ($pass_val->fails()) {
-        //     return redirect('daftar_form')->with('message', 'Password Minimal 8 karakter');
-        // }
+            if ($cek->isEmpty()) {
+                $bio = DB::table('tbl_master_biodata')->insertGetId([
+                        'nik' => $request->input('nik'),
+                        'nama' => $request->input('nama'),
+                        'no_hp' => $request->input('no_hp'),
+                        'alamat' => $request->input('alamat'),
+                        // "created_at" =>  \Carbon\Carbon::now(), # new \Datetime()
+                        // "updated_at" => \Carbon\Carbon::now(),  # new \Datetime()
+                    ]);
+
+                   DB::table('users')->insertGetId([
+                        'username'=>$request['username'],
+                        'password'=>Hash::make($request['password']),
+                        'role'=>'user',
+                        'biodata_id'=>$bio
+                    ]);
 
 
-            User::create([
-            'username'=>$request['username'],
-            'password'=>Hash::make($request['password']),
-            'role'=>'user',
+            } else {
+                $bio = DB::table('tbl_master_biodata')->where('nik',$request->input('nik'))->update([
+                        'nik' => $request->input('nik'),
+                        'nama' => $request->input('nama'),
+                        'no_hp' => $request->input('no_hp'),
+                        'alamat' => $request->input('alamat'),
             ]);
+
+            $id = Biodata::where('nik',$request->input('nik'))->get();
+                DB::table('users')->insertGetId([
+                        'username'=>$request['username'],
+                        'password'=>Hash::make($request['password']),
+                        'role'=>'user',
+                        'biodata_id'=>$id[0]['id'],
+                    ]);
+
+
+            }
+
+
+
+
+        });
+        // dd($trans);
 
 
             return redirect('/')->with('sukses', 'Berhasil Mendaftar Akun');
@@ -83,4 +115,17 @@ class OtentikasiController extends Controller
         Auth::logout();
         return redirect('/');
         }
+
+        public function periksa(Request $request) {
+        $bio = Biodata::where('nik',$request->input('nik'))->get();
+        if ($bio->isEmpty()) {
+        return response()->json('kosong');
+        }else{
+            return response()->json([
+            true,
+            'bio' => $bio,
+        ]);
+        }
+
+    }
 }

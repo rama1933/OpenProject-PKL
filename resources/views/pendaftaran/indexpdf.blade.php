@@ -74,12 +74,22 @@
             @foreach ($pendaftaran as $pendaftaran)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{ $pendaftaran->nik }}</td>
-                <td>{{ $pendaftaran->nama }}</td>
-                <td>{{ $pendaftaran->no_hp }}</td>
-                <td>{{ $pendaftaran->alamat }}</td>
-                <td>{{ $pendaftaran->merk }}</td>
-                <td>{{ $pendaftaran->type }}</td>
+                @foreach ($pendaftaran->biodata as $a)
+                <td>{{ $a->nik }}</td>
+                <td>{{ $a->nama }}</td>
+                <td>{{ $a->no_hp }}</td>
+                <td>{{ $a->alamat }}</td>
+                @endforeach
+                <td>
+                    @foreach ($pendaftaran->merk as $a)
+                    {{ $a->merk }}
+                    @endforeach
+                </td>
+                <td>
+                    @foreach ($pendaftaran->type as $a)
+                    {{ $a->type }}
+                    @endforeach
+                </td>
                 <td>
                     @foreach ($pendaftaran->jenis as $a)
                     {{ $a->jenis }}

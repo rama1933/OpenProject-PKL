@@ -134,7 +134,7 @@
                 <span><i class="fa fa-user"></i></span>
             </div>
             <hr style="background-color:rgb(42, 116, 255)">
-            <h1 style="text-align: center;color:rgb(42, 116, 255)">Selamat Datang Di Apliaksi Pendaftaran Bermotor Baru
+            <h1 style="text-align: center;color:rgb(42, 116, 255)">Selamat Datang Di Aplikasi Pendaftaran Bermotor Baru
             </h1>
             <hr style="background-color:rgb(42, 116, 255)">
             @if (session('message'))
@@ -159,7 +159,7 @@
             </div>
             @endif
             <div class="form-group">
-                <input type="text" class="form-control item" name="username" id="username" placeholder="Username / NIK">
+                <input type="text" class="form-control item" name="username" id="username" placeholder="Username">
             </div>
             <div class="form-group">
                 <input type="password" class="form-control item" id="password" name="password" placeholder="Password">

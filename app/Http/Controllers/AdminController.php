@@ -91,9 +91,9 @@ class AdminController extends Controller
         // }
 
         // $data['data'] = $query->get();
-        $data['pendaftaran'] = Pendaftaran::where('user_id',auth()->user()->id)->get();
+        $data['pendaftaran'] = Pendaftaran::all();
         $pdf = PDF::loadview('admin.indexpdf', $data)->setPaper('a4', 'landscape');
-        return $pdf->download('Pendaftaran.pdf');
+        return $pdf->stream('Pendaftaran.pdf');
     }
 
 
@@ -119,6 +119,6 @@ class AdminController extends Controller
         // $data['data'] = $query->get();
         $data['pendaftaran'] = Pendaftaran::where('id',$id)->get();
         $pdf = PDF::loadview('admin.indexpdf_detail', $data)->setPaper('a4', 'landscape');
-        return $pdf->download('Pendaftaran.pdf');
+        return $pdf->stream('Pendaftaran.pdf');
     }
 }

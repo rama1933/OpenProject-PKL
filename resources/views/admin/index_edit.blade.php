@@ -91,13 +91,13 @@
                                                 </div>
 
                                                 <div class="form-group col-lg-6">
-                                                    <span>Tangal STNK</span>
+                                                    <span>Tanggal STNK</span>
                                                     <input type="date" class="form-control" name="tgl_stnk"
                                                         placeholder="" required />
                                                 </div>
 
                                                 <div class="form-group col-lg-6">
-                                                    <span>Tangal Pajak</span>
+                                                    <span>Tanggal Pajak</span>
                                                     <input type="date" class="form-control" name="tgl_pajak"
                                                         placeholder="" required />
                                                 </div>

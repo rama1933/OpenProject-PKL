@@ -52,7 +52,7 @@
                                             </div>
                                         </div>
                                         @endif
-                                        <a href="{{ url('') }}/jenis_pdf" title="Unduh Dokumen (PDF)"
+                                        <a href="{{ url('') }}/jenis_pdf" target="_blank" title="Unduh Dokumen (PDF)"
                                             class="btn btn-md btn-primary mb-3"><i class="fa fa-print">
                                                 Cetak</i></a>
                                         <table id="table" class="table table-bordered table-striped">

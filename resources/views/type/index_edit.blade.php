@@ -36,20 +36,20 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Edit Jenis</h3>
+                                        <h3 class="card-title">Edit Type</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
-                                        @foreach ($jenis as $jenis)
-                                        <form method="post" id="form-edit" action="{{ url('/jenis_update') }}"
+                                        @foreach ($type as $type)
+                                        <form method="post" id="form-edit" action="{{ url('/type_update') }}"
                                             enctype="multipart/form-data">
                                             @csrf
                                             @method('PATCH')
-                                            <input type="hidden" name="id" value="{{ $jenis->id }}">
+                                            <input type="hidden" name="id" value="{{ $type->id }}">
                                             <div class="row">
                                                 <div class="form-group col-lg-12">
-                                                    <input type="text" class="form-control" name="jenis"
-                                                        value="{{ $jenis->jenis }}" placeholder="Jenis" required />
+                                                    <input type="text" class="form-control" name="type"
+                                                        value="{{ $type->type }}" placeholder="type" required />
                                                 </div>
                                                 <div class="btn-group col-lg-12 justify-content-center">
                                                     <div class="text-center">

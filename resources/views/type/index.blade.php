@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                {{-- <h1 class="m-0 text-dark">Karyawan {{ $jenis }}</h1> --}}
+                {{-- <h1 class="m-0 text-dark">Karyawan {{ $type }}</h1> --}}
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
@@ -35,10 +35,10 @@
                                 <div class="card">
                                     <div class="card-header">
 
-                                        <a href="{{ route('pendaftaran_tambah') }}" class="btn btn-primary float-right">
+                                        <a href="{{ route('type_tambah') }}" class="btn btn-primary float-right">
                                             <i class="fa fa-plus"> Tambah Data</i></a>
 
-                                        <h3 class="card-title">Data Pendaftaran</h3>
+                                        <h3 class="card-title">Master type</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
@@ -52,65 +52,29 @@
                                             </div>
                                         </div>
                                         @endif
-                                        <a href="{{ url('') }}/pendaftaran_pdf" target="_blank"
-                                            title="Unduh Dokumen (PDF)" class="btn btn-md btn-primary mb-3"><i
-                                                class="fa fa-print">
+                                        <a href="{{ url('') }}/type_pdf" target="_blank" title="Unduh Dokumen (PDF)"
+                                            class="btn btn-md btn-primary mb-3"><i class="fa fa-print">
                                                 Cetak</i></a>
                                         <table id="table" class="table table-bordered table-striped">
                                             <thead>
                                                 <tr>
                                                     <th>No</th>
-                                                    {{-- <th>Nik</th>
-                                                    <th>Nama</th>
-                                                    <th>No Hp</th>
-                                                    <th>Alamat</th> --}}
-                                                    <th>Merk</th>
-                                                    <th>Type</th>
-                                                    <th>Jenis</th>
-                                                    <th>Warna</th>
-                                                    <th>Tahun Pembuatan</th>
-                                                    <th>Tanggal Daftar</th>
+                                                    <th>type</th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach ($pendaftaran as $pendaftaran)
+                                                @foreach ($type as $type)
                                                 <tr>
                                                     <td>{{$loop->iteration}}</td>
-                                                    {{-- <td>{{ $pendaftaran->nik }}</td>
-                                                    <td>{{ $pendaftaran->nama }}</td>
-                                                    <td>{{ $pendaftaran->no_hp }}</td>
-                                                    <td>{{ $pendaftaran->alamat }}</td> --}}
+                                                    <td>{{ $type->type }}</td>
                                                     <td>
-                                                        @foreach ($pendaftaran->merk as $b)
-                                                        {{ $b->merk }}
-                                                        @endforeach
-                                                    </td>
-                                                    <td>
-                                                        @foreach ($pendaftaran->type as $c)
-                                                        {{ $c->type }}
-                                                        @endforeach
-                                                    </td>
-                                                    <td>
-                                                        @foreach ($pendaftaran->jenis as $a)
-                                                        {{ $a->jenis }}
-                                                        @endforeach
-                                                    </td>
-                                                    <td>{{ $pendaftaran->warna }}</td>
-                                                    <td>{{ $pendaftaran->tahun }}</td>
-
-                                                    <td>{{ date('d-m-Y',strtotime($pendaftaran->tanggal)) }}</td>
-                                                    <td>
-                                                        <a href="{{ route('pendaftaran_pdf_detail',$pendaftaran->id) }}"
-                                                            class="btn btn-sm btn-info" target="_blank"> <i
-                                                                class="fa fa-print">
-                                                            </i></a>
-                                                        <a href="{{ route('pendaftaran_edit',$pendaftaran->id) }}"
+                                                        <a href="{{ route('type_edit',$type->id) }}"
                                                             class="btn btn-sm btn-primary edit"> <i class="fa fa-pen">
                                                             </i></a>
-                                                        <a href="{{ route('pendaftaran_hapus',$pendaftaran->id) }}"
+                                                        <a href="{{ route('type_hapus',$type->id) }}"
                                                             class="btn btn-sm btn-danger"><i class="fa fa-trash"
-                                                                onclick="return confirm('Hapus data {{  $pendaftaran->nama  }} ?')">
+                                                                onclick="return confirm('Hapus data {{  $type->id  }} ?')">
                                                             </i></a>
                                                     </td>
                                                 </tr>

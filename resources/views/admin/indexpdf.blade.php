@@ -69,20 +69,31 @@
                 <th>Tahun Pembuatan</th>
                 <th>Tanggal Daftar</th>
                 <th>Nopol</th>
-                <th>Tgl STNK</th>
-                <th>Tgl Pajak</th>
+                <th>Tanggal STNK</th>
+                <th>Tanggal Pajak</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($pendaftaran as $pendaftaran)
             <tr>
                 <td>{{$loop->iteration}}</td>
-                <td>{{ $pendaftaran->nik }}</td>
-                <td>{{ $pendaftaran->nama }}</td>
-                <td>{{ $pendaftaran->no_hp }}</td>
-                <td>{{ $pendaftaran->alamat }}</td>
-                <td>{{ $pendaftaran->merk }}</td>
-                <td>{{ $pendaftaran->type }}</td>
+                @foreach ($pendaftaran->biodata as $a)
+                <td>{{ $a->nik }}</td>
+                <td>{{ $a->nama }}</td>
+                <td>{{ $a->no_hp }}</td>
+                <td>{{ $a->alamat }}</td>
+                @endforeach
+                <td>
+                    @foreach ($pendaftaran->merk as $a)
+                    {{ $a->merk }}
+                    @endforeach
+                </td>
+                <td>
+                    @foreach ($pendaftaran->type as $a)
+                    {{ $a->type }}
+                    @endforeach
+                </td>
                 <td>
                     @foreach ($pendaftaran->jenis as $a)
                     {{ $a->jenis }}
@@ -98,10 +109,22 @@
                 <td>{{ date('d-m-Y',strtotime($a->tgl_stnk)) }}</td>
                 <td>{{ date('d-m-Y',strtotime($a->tgl_pajak)) }}</td>
                 @empty
-                <td></td>
-                <td></td>
-                <td></td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
                 @endforelse
+                <td>
+                    @forelse ($pendaftaran->pendaftarans as $a)
+                    @if ($a->nopol == null and $a->tgl_stnk == null and
+                    $a->tgl_stnk == null)
+                    Belum DI Verifikasi
+                    @else
+                    Selesai
+                    @endif
+                    @empty
+                    Belum DI Verifikasi
+                    @endforelse
+                </td>
             </tr>
             @endforeach
         </tbody>

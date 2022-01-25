@@ -36,20 +36,38 @@
 
                                 <div class="card">
                                     <div class="card-header">
-                                        <h3 class="card-title">Edit Jenis</h3>
+                                        <h3 class="card-title">Edit Biodata</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <div class="card-body">
-                                        @foreach ($jenis as $jenis)
-                                        <form method="post" id="form-edit" action="{{ url('/jenis_update') }}"
+                                        @foreach ($biodata as $biodata)
+                                        <form method="post" id="form-edit" action="{{ url('/biodata_update') }}"
                                             enctype="multipart/form-data">
                                             @csrf
                                             @method('PATCH')
-                                            <input type="hidden" name="id" value="{{ $jenis->id }}">
+                                            <input type="hidden" name="id" value="{{ $biodata->id }}">
                                             <div class="row">
+                                                <div class="form-group col-lg-6">
+                                                    <input type="text" class="form-control" name="nik" placeholder="Nik"
+                                                        value="{{ $biodata->nik }}" data-rule="minlen:4" required />
+                                                </div>
+
+                                                <div class="form-group col-lg-6">
+                                                    <input type="text" class="form-control" name="nama"
+                                                        value="{{ $biodata->nama }}" placeholder="Nama"
+                                                        data-rule="minlen:4" required />
+                                                </div>
+
                                                 <div class="form-group col-lg-12">
-                                                    <input type="text" class="form-control" name="jenis"
-                                                        value="{{ $jenis->jenis }}" placeholder="Jenis" required />
+                                                    <input type="text" class="form-control" name="no_hp"
+                                                        value="{{ $biodata->no_hp }}" placeholder="No Hp"
+                                                        data-rule="minlen:4" required />
+                                                </div>
+
+                                                <div class="form-group col-lg-12">
+                                                    <textarea class="form-control" name="alamat" rows="5"
+                                                        placeholder="Alamat" data-rule="required"
+                                                        required>{{ $biodata->alamat }}</textarea>
                                                 </div>
                                                 <div class="btn-group col-lg-12 justify-content-center">
                                                     <div class="text-center">

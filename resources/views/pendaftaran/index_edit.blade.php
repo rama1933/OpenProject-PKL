@@ -48,6 +48,7 @@
                                             <input type="hidden" name="id" value="{{ $pendaftaran->id }}">
                                             <div class="row">
                                                 <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+                                                <input type="hidden" name="tanggal" value="{{ date('Y-m-d') }}">
                                                 {{-- <div class="form-group">
                                                     <label for="nik" style="color: white">NIK</label>
                                                     <input type="text" name="nik" class="form-control" maxlength="16"
@@ -55,55 +56,30 @@
                                                         data-rule="minlen:4" required />
                                                 </div> --}}
 
-
-                                                <div class="form-group col-lg-6">
-                                                    <input type="text" value="{{ $pendaftaran->nik }}"
-                                                        class="form-control" name="nik" placeholder="Nik"
-                                                        data-rule="minlen:4" required />
+                                                <div class="form-group col-lg-12">
+                                                    <select name="merk_id" class="form-control" required>
+                                                        @foreach ($merk2 as $merk2)
+                                                        <option value="{{ $merk2->id }}">{{ $merk2->merk }}</option>
+                                                        @endforeach
+                                                        @foreach ($merk as $merk)
+                                                        <option value="{{ $merk->id }}">{{ $merk->merk }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
 
-                                                <div class="form-group col-lg-6">
-                                                    <input type="text" class="form-control"
-                                                        value="{{ $pendaftaran->nama }}" name="nama"
-                                                        placeholder="Nama Pemilik" data-rule="minlen:4" required />
+                                                <div class="form-group col-lg-12">
+                                                    <select name="type_id" class="form-control" required>
+                                                        @foreach ($type2 as $type2)
+                                                        <option value="{{ $type2->id }}">{{ $type2->type }}</option>
+                                                        @endforeach
+                                                        @foreach ($type as $type)
+                                                        <option value="{{ $type->id }}">{{ $type->type }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
 
-                                                <div class="form-group col-lg-6">
-                                                    <input type="text" class="form-control" name="no_hp"
-                                                        placeholder="No Hp" value="{{ $pendaftaran->no_hp }}"
-                                                        data-rule="minlen:4" required />
-                                                </div>
 
-                                                <div class="form-group col-lg-6">
-                                                    <input type="text" class="form-control" name="nopol"
-                                                        placeholder="Nopol " value="{{ $pendaftaran->nopol }}"
-                                                        data-rule="minlen:4" required />
-                                                </div>
 
-                                                <div class="form-group col-lg-6">
-                                                    <input type="text" class="form-control" name="merk"
-                                                        placeholder="Merk " value="{{ $pendaftaran->merk }}"
-                                                        data-rule="minlen:4" required />
-                                                </div>
-
-                                                <div class="form-group col-lg-6">
-                                                    <input type="text" class="form-control" name="type"
-                                                        placeholder="Type" value="{{ $pendaftaran->type }}"
-                                                        data-rule="minlen:4" required />
-                                                </div>
-
-                                                <div class="form-group col-lg-6">
-                                                    <input type="text" class="form-control" name="warna"
-                                                        placeholder="Warna " value="{{ $pendaftaran->warna }}"
-                                                        data-rule="minlen:4" required />
-                                                </div>
-
-                                                <div class="form-group col-lg-6">
-                                                    <input type="text" class="form-control" name="tahun"
-                                                        placeholder="Tahun Pembuatan " data-rule="minlen:4"
-                                                        onkeypress="return hanyaAngka(event)"
-                                                        value="{{ $pendaftaran->tahun }}" maxlength="4" required />
-                                                </div>
 
                                                 <div class="form-group col-lg-12">
                                                     <select name="jenis_id" class="form-control" required>
@@ -116,11 +92,21 @@
                                                     </select>
                                                 </div>
 
-                                                <div class="form-group col-lg-12">
-                                                    <textarea class="form-control" name="alamat" rows="5"
-                                                        placeholder="Alamat" data-rule="required"
-                                                        required>{{ $pendaftaran->alamat }}</textarea>
+                                                <div class="form-group col-lg-6">
+                                                    <input type="text" class="form-control" name="warna"
+                                                        placeholder="Warna" value="{{ $pendaftaran->warna }}"
+                                                        data-rule="minlen:4" required />
                                                 </div>
+
+                                                <div class="form-group col-lg-6">
+                                                    <input type="text" class="form-control" name="tahun"
+                                                        placeholder="Tahun Pembuatan " data-rule="minlen:4"
+                                                        onkeypress="return hanyaAngka(event)"
+                                                        value="{{ $pendaftaran->tahun }}" maxlength="4" required />
+                                                </div>
+
+
+
 
 
                                                 {{-- <div class="form-group col-lg-12">

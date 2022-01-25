@@ -19,6 +19,7 @@ Route::post('masuk', 'Otentikasi\OtentikasiController@login')->name('masuk');
 
 Route::get('daftar_form', 'Otentikasi\OtentikasiController@daftar')->name('daftar_form');
 Route::post('daftar', 'Otentikasi\OtentikasiController@daftar_input')->name('daftar');
+Route::any('periksa', 'Otentikasi\OtentikasiController@periksa')->name('periksa');
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -40,7 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::any('pendaftaran_pdf', 'PendaftaranController@pdf')->name('pendaftaran_pdf');
     Route::any('pendaftaran_pdf_detail/{id}', 'PendaftaranController@pdf_detail')->name('pendaftaran_pdf_detail');
 
-     Route::get('jenis', 'JenisController@index')->name('jenis');
+    Route::get('jenis', 'JenisController@index')->name('jenis');
     Route::get('jenis_tambah', 'JenisController@index_tambah')->name('jenis_tambah');
     Route::get('jenis_edit/{id}', 'JenisController@index_edit')->name('jenis_edit');
     Route::any('jenis_store', 'JenisController@store')->name('jenis_store');
@@ -48,6 +49,33 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('jenis_hapus/{id}', 'JenisController@hapus')->name('jenis_hapus');
     Route::any('jenis_pdf', 'JenisController@pdf')->name('jenis_pdf');
     Route::any('jenis_pdf_detail/{id}', 'JenisController@pdf_detail')->name('jenis_pdf_detail');
+
+    Route::get('type', 'typeController@index')->name('type');
+    Route::get('type_tambah', 'typeController@index_tambah')->name('type_tambah');
+    Route::get('type_edit/{id}', 'typeController@index_edit')->name('type_edit');
+    Route::any('type_store', 'typeController@store')->name('type_store');
+    Route::any('type_update', 'typeController@update')->name('type_update');
+    Route::get('type_hapus/{id}', 'typeController@hapus')->name('type_hapus');
+    Route::any('type_pdf', 'typeController@pdf')->name('type_pdf');
+    Route::any('type_pdf_detail/{id}', 'typeController@pdf_detail')->name('type_pdf_detail');
+
+    Route::get('merk', 'merkController@index')->name('merk');
+    Route::get('merk_tambah', 'merkController@index_tambah')->name('merk_tambah');
+    Route::get('merk_edit/{id}', 'merkController@index_edit')->name('merk_edit');
+    Route::any('merk_store', 'merkController@store')->name('merk_store');
+    Route::any('merk_update', 'merkController@update')->name('merk_update');
+    Route::get('merk_hapus/{id}', 'merkController@hapus')->name('merk_hapus');
+    Route::any('merk_pdf', 'merkController@pdf')->name('merk_pdf');
+    Route::any('merk_pdf_detail/{id}', 'merkController@pdf_detail')->name('merk_pdf_detail');
+
+     Route::get('biodata', 'biodataController@index')->name('biodata');
+    Route::get('biodata_tambah', 'biodataController@index_tambah')->name('biodata_tambah');
+    Route::get('biodata_edit/{id}', 'biodataController@index_edit')->name('biodata_edit');
+    Route::any('biodata_store', 'biodataController@store')->name('biodata_store');
+    Route::any('biodata_update', 'biodataController@update')->name('biodata_update');
+    Route::get('biodata_hapus/{id}', 'biodataController@hapus')->name('biodata_hapus');
+    Route::any('biodata_pdf', 'biodataController@pdf')->name('biodata_pdf');
+    Route::any('biodata_pdf_detail/{id}', 'biodataController@pdf_detail')->name('biodata_pdf_detail');
 
 
     Route::get('user', 'user\UserController@index')->name('user');

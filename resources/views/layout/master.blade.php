@@ -83,18 +83,7 @@
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
-
-                        <li class="nav-header"> DATA</li>
-
-                        <li class="nav-item">
-                            <a href="{{ route('pendaftaran') }}" class="nav-link">
-                                <i class="nav-icon fas fa-book"></i>
-                                <p>
-                                    Data Pendaftaran
-                                </p>
-                            </a>
-                        </li>
-
+                        @if (auth()->user()->role == 'admin')
                         <li class="nav-header"> MASTER</li>
 
                         <li class="nav-item">
@@ -106,6 +95,58 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a href="{{ route('type') }}" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Master Type
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ route('merk') }}" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Master Merk
+                                </p>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a href="{{ route('biodata') }}" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Master Biodata
+                                </p>
+                            </a>
+                        </li>
+
+
+                        <li class="nav-header"> DATA</li>
+                        <li class="nav-item">
+                            <a href="{{ route('pendaftaran_admin') }}" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Data Pendaftaran
+                                </p>
+                            </a>
+                        </li>
+                        @endif
+
+
+                        @if (auth()->user()->role == 'user')
+                        <li class="nav-header"> DATA</li>
+                        <li class="nav-item">
+                            <a href="{{ route('pendaftaran') }}" class="nav-link">
+                                <i class="nav-icon fas fa-book"></i>
+                                <p>
+                                    Data Pendaftaran
+                                </p>
+                            </a>
+                        </li>
+                        @endif
 
 
                         {{-- <li class="nav-header"> PENGATURAN</li>
@@ -142,8 +183,8 @@
         <footer class="main-footer">
 
             <div class="float-right">
-                <strong> &copy; KEJARIHSS</strong>
-                .2021
+                <strong> &copy; APL</strong>
+                .2022
                 {{-- <b>Version</b> 2.0.0 --}}
             </div>
         </footer>

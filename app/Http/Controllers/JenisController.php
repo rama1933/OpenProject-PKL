@@ -59,7 +59,7 @@ class JenisController extends Controller
     {
         $data['jenis'] = Jenis::get();
         $pdf = PDF::loadview('jenis.indexpdf', $data)->setPaper('a4', 'landscape');
-        return $pdf->download('jenis.pdf');
+        return $pdf->stream('jenis.pdf');
     }
 
 
@@ -69,6 +69,6 @@ class JenisController extends Controller
 
         $data['jenis'] = Jenis::where('id',$id)->get();
         $pdf = PDF::loadview('jenis.indexpdf_detail', $data)->setPaper('a4', 'landscape');
-        return $pdf->download('jenis.pdf');
+        return $pdf->stream('jenis.pdf');
     }
 }

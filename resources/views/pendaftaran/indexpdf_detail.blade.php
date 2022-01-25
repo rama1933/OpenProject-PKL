@@ -71,40 +71,45 @@
         </thead> --}}
         <tbody>
             @foreach ($pendaftaran as $pendaftaran)
+            @foreach ($pendaftaran->biodata as $a)
             <tr>
                 <th style="text-align: left">Nik</th>
                 <td style="text-align: center">:</td>
-                <td style="padding-left: 10px">{{ $pendaftaran->nik }}</td>
+                <td style="padding-left: 10px">{{ $a->nik }}</td>
             </tr>
             <tr>
                 <th style="text-align: left">Nama</th>
                 <td style="text-align: center">:</td>
-                <td style="padding-left: 10px">{{ $pendaftaran->nama }}</td>
+                <td style="padding-left: 10px">{{ $a->nama }}</td>
             </tr>
             <tr>
                 <th style="text-align: left">No Hp</th>
                 <td style="text-align: center">:</td>
-                <td style="padding-left: 10px">{{ $pendaftaran->no_hp }}</td>
+                <td style="padding-left: 10px">{{ $a->no_hp }}</td>
             </tr>
             <tr>
                 <th style="text-align: left">Alamat</th>
                 <td style="text-align: center">:</td>
-                <td style="padding-left: 10px">{{ $pendaftaran->alamat }}</td>
+                <td style="padding-left: 10px">{{ $a->alamat }}</td>
             </tr>
+            @endforeach
             <tr>
                 <th style="text-align: left">Merk</th>
                 <td style="text-align: center">:</td>
-                <td style="padding-left: 10px">{{ $pendaftaran->merk }}</td>
+                <td style="padding-left: 10px">
+                    @foreach ($pendaftaran->merk as $a)
+                    {{ $a->merk }}
+                    @endforeach
+                </td>
             </tr>
             <tr>
                 <th style="text-align: left">Type</th>
                 <td style="text-align: center">:</td>
-                <td style="padding-left: 10px">{{ $pendaftaran->type }}</td>
-            </tr>
-            <tr>
-                <th style="text-align: left">Type</th>
-                <td style="text-align: center">:</td>
-                <td style="padding-left: 10px">{{ $pendaftaran->type }}</td>
+                <td style="padding-left: 10px">
+                    @foreach ($pendaftaran->type as $a)
+                    {{ $a->type }}
+                    @endforeach
+                </td>
             </tr>
             <tr>
                 <th style="text-align: left">Jenis</th>

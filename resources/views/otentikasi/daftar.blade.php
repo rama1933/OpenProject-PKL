@@ -128,7 +128,7 @@
 
 
     <div class="registration-form">
-        <form method="POST" action="{{ route('daftar') }}" class="needs-validation" novalidate="">
+        <form method="POST" action="{{ route('daftar') }}">
             @csrf
             <div class="form-icon">
                 <span><i class="fa fa-user"></i></span>
@@ -147,11 +147,52 @@
                 </div>
             </div>
             @endif
-            <div class="form-group">
-                <input type="text" class="form-control item" name="username" id="username" placeholder="Username / NIK">
-            </div>
-            <div class="form-group">
-                <input type="password" class="form-control item" id="password" name="password" placeholder="Password">
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="text" class="form-control item" name="username" id="username"
+                            placeholder="Username" required>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="form-group">
+                        <input type="password" class="form-control item" name="password" id="password"
+                            placeholder="Password" required>
+                    </div>
+                </div>
+
+                <div class="col-8">
+                    <div class="form-group">
+                        <input type="text" class="form-control item" name="nik" id="nik" placeholder="Nik" required>
+                    </div>
+                </div>
+
+                <div class="col-4">
+                    <div class="form-group">
+                        <button id="periksa" class="btn btn-md btn-primary">Periksa Data</button>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control item" name="nama" id="nama" placeholder="Nama" required>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control item" name="no_hp" id="no_hp" placeholder="No Hp"
+                            required>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <input type="text" class="form-control item" name="alamat" id="alamat" placeholder="Alamat"
+                            required>
+                    </div>
+                </div>
+
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-block create-account">Daftar</button>
@@ -177,8 +218,45 @@
     <script src="{{ url('') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ url('') }}/dist/js/adminlte.min.js"></script>
+    <script src="{{ url('') }}/dist/js/jquery.form.min.js"></script>
+
+    <script>
+        $('#periksa').on('click', function(e) {
+        e.preventDefault()
+         let nik = $("#nik").val()
+        //  console.log(nik)
+
+        $.ajax({
+        url: "{{ url('') }}/periksa",
+        method:"POST",
+        data: {nik:nik,_token:'{{ csrf_token() }}'},
+        success: function (results) {
+        if (results[0] === true) {
 
 
+        console.log(results['bio'][0].nama)
+        $("#nama").val(results['bio'][0].nama)
+        $("#no_hp").val(results['bio'][0].no_hp)
+        $("#alamat").val(results['bio'][0].alamat)
+        $('#nama').prop("readonly", false);
+        $('#no_hp').prop("readonly", false);
+        $('#alamat').prop("readonly", false);
+
+        }
+        else if (results === 'kosong') {
+        alert("Data Tidak DItemukan, Silahkan Isi Biodata Anda");
+        $("#nama").val('')
+        $("#no_hp").val('')
+        $("#alamat").val('')
+        // $('#nama').prop("readonly", false);
+        // $('#no_hp').prop("readonly", false);
+        // $('#alamat').prop("readonly", false);
+        }
+        }
+        });
+
+       })
+    </script>
 </body>
 
 </html>
