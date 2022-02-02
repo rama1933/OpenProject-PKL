@@ -55,6 +55,18 @@
                                                         placeholder="Nama" data-rule="minlen:4" required />
                                                 </div>
 
+                                                <div class="form-group col-lg-6">
+                                                    <input type="text" class="form-control" name="tempat_lahir"
+                                                        placeholder="Tempat Lahir" required />
+                                                </div>
+
+                                                <div class="form-group col-lg-6">
+                                                    <input placeholder="Tanggal Lahir" type="text"
+                                                        onfocus="(this.type='date')" onblur="(this.type='text')"
+                                                        class="form-control textbox-n" name="tanggal_lahir"
+                                                        placeholder="Subject" required />
+                                                </div>
+
                                                 <div class="form-group col-lg-12">
                                                     <input type="text" class="form-control" name="no_hp"
                                                         placeholder="No Hp" data-rule="minlen:4" required />

@@ -72,6 +72,9 @@
         <tbody>
             @foreach ($pendaftaran as $pendaftaran)
             @foreach ($pendaftaran->biodata as $a)
+            @php
+            $date = strtotime($a->tanggal_lahir);
+            @endphp
             <tr>
                 <th style="text-align: left">Nik</th>
                 <td style="text-align: center">:</td>
@@ -81,6 +84,19 @@
                 <th style="text-align: left">Nama</th>
                 <td style="text-align: center">:</td>
                 <td style="padding-left: 10px">{{ $a->nama }}</td>
+            </tr>
+            <tr>
+                <th style="text-align: left">TTL</th>
+                <td style="text-align: center">:</td>
+                <td style="padding-left: 10px">
+                    @if ($a->tempat_lahir == null or $a->tanggal_lahir
+                    == null)
+
+                    @else
+                    {{ $a->tempat_lahir }}, {{
+                    date('d-m-Y', $date)}}
+                    @endif
+                </td>
             </tr>
             <tr>
                 <th style="text-align: left">No Hp</th>

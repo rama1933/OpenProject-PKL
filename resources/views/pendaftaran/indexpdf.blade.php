@@ -60,6 +60,7 @@
                 <th>No</th>
                 <th>Nik</th>
                 <th>Nama</th>
+                <th>TTL</th>
                 <th>No Hp</th>
                 <th>Alamat</th>
                 <th>Merk</th>
@@ -75,8 +76,21 @@
             <tr>
                 <td>{{$loop->iteration}}</td>
                 @foreach ($pendaftaran->biodata as $a)
+                @php
+                $date = strtotime($a->tanggal_lahir);
+                @endphp
                 <td>{{ $a->nik }}</td>
                 <td>{{ $a->nama }}</td>
+                <td>
+                    @if ($a->tempat_lahir == null or $a->tanggal_lahir
+                    == null)
+
+                    @else
+                    {{ $a->tempat_lahir }}, {{
+                    date('d-m-Y', $date)}}
+                    @endif
+
+                </td>
                 <td>{{ $a->no_hp }}</td>
                 <td>{{ $a->alamat }}</td>
                 @endforeach

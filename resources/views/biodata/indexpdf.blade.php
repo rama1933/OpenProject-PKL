@@ -60,16 +60,30 @@
                 <th>No</th>
                 <th>Nik</th>
                 <th>Nama</th>
+                <th>TTL</th>
                 <th>No Hp</th>
                 <th>Alamat</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($biodata as $biodata)
+            @php
+            $date = strtotime($biodata->tanggal_lahir);
+            @endphp
             <tr>
                 <td>{{$loop->iteration}}</td>
                 <td>{{ $biodata->nik }}</td>
                 <td>{{ $biodata->nama }}</td>
+                <td>
+                    @if ($biodata->tempat_lahir == null or $biodata->tanggal_lahir
+                    == null)
+
+                    @else
+                    {{ $biodata->tempat_lahir }}, {{
+                    date('d-m-Y', $date)}}
+                    @endif
+
+                </td>
                 <td>{{ $biodata->no_hp }}</td>
                 <td>{{ $biodata->alamat }}</td>
             </tr>

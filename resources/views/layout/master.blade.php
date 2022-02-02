@@ -84,6 +84,15 @@
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
                         @if (auth()->user()->role == 'admin')
+                        <li class="nav-header">DASHBOARD</li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard') }}" class="nav-link">
+                                <i class="nav-icon fas fa-fire"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-header"> MASTER</li>
 
                         <li class="nav-item">
@@ -137,12 +146,29 @@
 
 
                         @if (auth()->user()->role == 'user')
+                        <li class="nav-header">DASHBOARD</li>
+                        <li class="nav-item">
+                            <a href="{{ route('dashboard') }}" class="nav-link">
+                                <i class="nav-icon fas fa-fire"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
                         <li class="nav-header"> DATA</li>
                         <li class="nav-item">
                             <a href="{{ route('pendaftaran') }}" class="nav-link">
                                 <i class="nav-icon fas fa-book"></i>
                                 <p>
                                     Data Pendaftaran
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('biodata_user') }}" class="nav-link">
+                                <i class="nav-icon fas fa-user"></i>
+                                <p>
+                                    Biodata
                                 </p>
                             </a>
                         </li>

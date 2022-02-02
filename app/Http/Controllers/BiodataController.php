@@ -14,6 +14,12 @@ class BiodataController extends Controller
         return view('biodata.index', $data);
     }
 
+     public function index_user()
+    {
+       $data['biodata'] = Biodata::where('id',auth()->user()->biodata_id)->get();
+        return view('biodata.index_user', $data);
+    }
+
     public function index_tambah()
     {
         return view('biodata.index_tambah');
@@ -26,11 +32,18 @@ class BiodataController extends Controller
         return view('biodata.index_edit', $data);
     }
 
+      public function index_edit_user(Request $request, $id)
+    {
+        $data['biodata'] = Biodata::where('id', $id)->get();
+
+        return view('biodata.index_edit_user', $data);
+    }
+
     public function store(Request $request)
     {
-        $will_insert = $request->except([ '', '_token']);
-
-
+        $will_insert = $request->except([ 'tanggal_lahir', '_token']);
+        $date = strtotime($request->tanggal_lahir);
+        $will_insert['tanggal_lahir'] = date('Y-m-d',$date);
 
         $biodata = Biodata::create($will_insert);
 
@@ -39,11 +52,24 @@ class BiodataController extends Controller
 
     public function update(Request $request)
     {
-        $will_insert = $request->except([ '_token', '_method']);
+        $will_insert = $request->except([ 'tanggal_lahir','_token', '_method']);
+        $date = strtotime($request->tanggal_lahir);
+        $will_insert['tanggal_lahir'] = date('Y-m-d',$date);
 
         $biodata = Biodata::where('id', $request->input('id'))->update($will_insert);
         // return response()->json(true);
         return redirect('biodata')->with('message', 'Berhasil menyimpan data');
+    }
+
+    public function update_user(Request $request)
+    {
+        $will_insert = $request->except([ 'tanggal_lahir','_token', '_method']);
+        $date = strtotime($request->tanggal_lahir);
+        $will_insert['tanggal_lahir'] = date('Y-m-d',$date);
+
+        $biodata = Biodata::where('id', $request->input('id'))->update($will_insert);
+        // return response()->json(true);
+        return redirect('biodata_user')->with('message', 'Berhasil menyimpan data');
     }
 
     public function hapus(Request $request, $id)

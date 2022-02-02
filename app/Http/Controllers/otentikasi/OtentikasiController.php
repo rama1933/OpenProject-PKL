@@ -40,6 +40,8 @@ class OtentikasiController extends Controller
         }
 
        $trans = DB::transaction(function () use ($request) {
+        $date_input = strtotime($request->tanggal_lahir);
+        $date= date('Y-m-d',$date_input);
 
            $cek = Biodata::where('nik',$request->input('nik'))->get();
 
@@ -49,6 +51,8 @@ class OtentikasiController extends Controller
                         'nama' => $request->input('nama'),
                         'no_hp' => $request->input('no_hp'),
                         'alamat' => $request->input('alamat'),
+                        'tempat_lahir' => $request->input('tempat_lahir'),
+                        'tanggal_lahir' => $date,
                         // "created_at" =>  \Carbon\Carbon::now(), # new \Datetime()
                         // "updated_at" => \Carbon\Carbon::now(),  # new \Datetime()
                     ]);
@@ -67,6 +71,8 @@ class OtentikasiController extends Controller
                         'nama' => $request->input('nama'),
                         'no_hp' => $request->input('no_hp'),
                         'alamat' => $request->input('alamat'),
+                        'tempat_lahir' => $request->input('tempat_lahir'),
+                        'tanggal_lahir' => $date,
             ]);
 
             $id = Biodata::where('nik',$request->input('nik'))->get();
@@ -101,9 +107,9 @@ class OtentikasiController extends Controller
         // }
         if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
             if (auth()->user()->role == 'admin') {
-            return redirect()->route('pendaftaran_admin');
+            return redirect()->route('dashboard');
         }else{
-            return redirect('/pendaftaran');
+            return redirect('dashboard');
         }
 
         }

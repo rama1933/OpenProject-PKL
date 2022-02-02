@@ -23,6 +23,9 @@ Route::any('periksa', 'Otentikasi\OtentikasiController@periksa')->name('periksa'
 
 Route::group(['middleware' => 'auth'], function () {
 
+
+    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+
     Route::get('pendaftaran_admin', 'AdminController@index')->name('pendaftaran_admin');
     Route::get('pendaftaran_admin_tambah', 'AdminController@index_tambah')->name('pendaftaran_admin_tambah');
     Route::get('pendaftaran_admin_edit/{id}', 'AdminController@index_edit')->name('pendaftaran_admin_edit');
@@ -69,10 +72,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::any('merk_pdf_detail/{id}', 'merkController@pdf_detail')->name('merk_pdf_detail');
 
      Route::get('biodata', 'biodataController@index')->name('biodata');
+    Route::get('biodata_user', 'biodataController@index_user')->name('biodata_user');
     Route::get('biodata_tambah', 'biodataController@index_tambah')->name('biodata_tambah');
     Route::get('biodata_edit/{id}', 'biodataController@index_edit')->name('biodata_edit');
+        Route::get('biodata_edit_user/{id}', 'biodataController@index_edit_user')->name('biodata_edit_user');
     Route::any('biodata_store', 'biodataController@store')->name('biodata_store');
     Route::any('biodata_update', 'biodataController@update')->name('biodata_update');
+        Route::any('biodata_update_user', 'biodataController@update_user')->name('biodata_update_user');
     Route::get('biodata_hapus/{id}', 'biodataController@hapus')->name('biodata_hapus');
     Route::any('biodata_pdf', 'biodataController@pdf')->name('biodata_pdf');
     Route::any('biodata_pdf_detail/{id}', 'biodataController@pdf_detail')->name('biodata_pdf_detail');

@@ -58,6 +58,17 @@
                                                         data-rule="minlen:4" required />
                                                 </div>
 
+                                                <div class="form-group col-lg-6">
+                                                    <input type="text" class="form-control" name="tempat_lahir"
+                                                        value="{{ $biodata->tempat_lahir }}" placeholder="Tempat Lahir"
+                                                        required />
+                                                </div>
+
+                                                <div class="form-group col-lg-6">
+                                                    <input type="date" class="form-control" name="tanggal_lahir"
+                                                        value="{{ $biodata->tanggal_lahir }}" required>
+                                                </div>
+
                                                 <div class="form-group col-lg-12">
                                                     <input type="text" class="form-control" name="no_hp"
                                                         value="{{ $biodata->no_hp }}" placeholder="No Hp"

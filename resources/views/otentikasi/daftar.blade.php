@@ -181,6 +181,21 @@
 
                 <div class="col-12">
                     <div class="form-group">
+                        <input type="text" class="form-control item" name="tempat_lahir" id="tempat_lahir"
+                            placeholder="Tempat Lahir" required>
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
+                        <input placeholder="Tanggal Lahir" id="tanggal_lahir" type="text" onfocus="(this.type='date')"
+                            onblur="(this.type='text')" class="form-control item" name="tanggal_lahir"
+                            placeholder="Subject" required />
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="form-group">
                         <input type="text" class="form-control item" name="no_hp" id="no_hp" placeholder="No Hp"
                             required>
                     </div>
@@ -238,6 +253,8 @@
         $("#nama").val(results['bio'][0].nama)
         $("#no_hp").val(results['bio'][0].no_hp)
         $("#alamat").val(results['bio'][0].alamat)
+        $("#tempat_lahir").val(results['bio'][0].tempat_lahir)
+        $("#tanggal_lahir").val(results['bio'][0].tanggal_lahir)
         $('#nama').prop("readonly", false);
         $('#no_hp').prop("readonly", false);
         $('#alamat').prop("readonly", false);
@@ -248,6 +265,8 @@
         $("#nama").val('')
         $("#no_hp").val('')
         $("#alamat").val('')
+        $("#tempat_lahir").val('')
+        $("#tanggal_lahir").val('')
         // $('#nama').prop("readonly", false);
         // $('#no_hp').prop("readonly", false);
         // $('#alamat').prop("readonly", false);
