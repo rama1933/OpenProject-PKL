@@ -134,7 +134,8 @@
                 <span><i class="fa fa-user"></i></span>
             </div>
             <hr style="background-color:rgb(42, 116, 255)">
-            <h1 style="text-align: center;color:rgb(42, 116, 255)">Selamat Datang Di Aplikasi Pendaftaran Bermotor Baru
+            <h1 style="text-align: center;color:rgb(42, 116, 255)">Selamat Datang Di Aplikasi Pendaftaran Kendaraan
+                Bermotor Baru
             </h1>
             <hr style="background-color:rgb(42, 116, 255)">
             @if (session('message'))
